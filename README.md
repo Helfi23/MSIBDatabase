@@ -1,4 +1,4 @@
-## Ada beberapa data yang di awal yang tidak singkron dengan data akhir soalnya ada tambah dan update data di pertengahan 
+## Ada beberapa data yang di awal yang tidak singkron dengan data akhir soalnya ada tambah dan update data di pertengahan tapi untuk perintah semua sudah benar dan masuk kedalam logikanya. Cuman ada update dan create di pertengahan pengerjaan.
 
 
 ## 2.1 
