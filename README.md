@@ -28,7 +28,7 @@
    ###  END$$
 ### DELIMITER ;
 ### call inputProduk(0110,Mizone,20000,50000,5,2,1);
-    ![image](https://user-images.githubusercontent.com/55681352/235924571-2cbde98b-039e-4888-b692-a6ccf4dea4c5.png)
+![image](https://user-images.githubusercontent.com/55681352/235924571-2cbde98b-039e-4888-b692-a6ccf4dea4c5.png)
 ![image](https://user-images.githubusercontent.com/55681352/235924620-0bc8d3a0-fb94-4f96-b9b7-754c350d7240.png)
 # Buat fungsi showProduk(), setelah itu panggil fungsinya
 ###  DELIMITER $$
