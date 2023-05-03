@@ -1,8 +1,8 @@
-##MSIB Database Tugas 7
+## MSIB Database Tugas 7
 # Buat fungsi inputPelanggan(), setelah itu panggil fungsinya
- DELIMITER $$
- CREATE PROCEDURE inputPelanggans(
-    -> kode varchar(10), nama_pelanggan varchar(50), jk char(1), tmpt_lahir varchar(30), tgl_lahir date, email varchar(45), kartu_id int(11), alamat varchar(45))
+ ### DELIMITER $$
+ ### CREATE PROCEDURE inputPelanggans(
+ ###   -> kode varchar(10), nama_pelanggan varchar(50), jk char(1), tmpt_lahir varchar(30), tgl_lahir date, email varchar(45), kartu_id int(11), alamat varchar(45))
     -> BEGIN
     -> INSERT INTO pelanggan(kode, nama_pelanggan,jk,tmpt_lahir,tgl_lahir,email,kartu_id,alamat)values(kode, nama_pelanggan,jk,tmpt_lahir,tgl_lahir,email,kartu_id,alamat);
     -> END$$
@@ -53,14 +53,6 @@ Query OK, 0 rows affected (0.025 sec)
 
 MariaDB [dbtoko]> DELIMITER ;
 MariaDB [dbtoko]> Call totalPesanan;
-+----------------+
-| jumlah_pesanan |
-+----------------+
-|              2 |
-+----------------+
-1 row in set (0.001 sec)
-
-Query OK, 0 rows affected (0.002 sec)
 ![image](https://user-images.githubusercontent.com/55681352/235926565-41067832-a567-4a7f-a519-9514865385ff.png)
 # tampilkan seluruh pesanan dari semua pelanggan
 
