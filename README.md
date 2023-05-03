@@ -1,8 +1,8 @@
 ## MSIB Database Tugas 7
 # Buat fungsi inputPelanggan(), setelah itu panggil fungsinya
- ### DELIMITER $$
- ### CREATE PROCEDURE inputPelanggans(
- ###   -> kode varchar(10), nama_pelanggan varchar(50), jk char(1), tmpt_lahir varchar(30), tgl_lahir date, email varchar(45), kartu_id int(11), alamat varchar(45))
+  DELIMITER $$
+    CREATE PROCEDURE inputPelanggans(
+    -> kode varchar(10), nama_pelanggan varchar(50), jk char(1), tmpt_lahir varchar(30), tgl_lahir date, email varchar(45), kartu_id int(11), alamat varchar(45))
     -> BEGIN
     -> INSERT INTO pelanggan(kode, nama_pelanggan,jk,tmpt_lahir,tgl_lahir,email,kartu_id,alamat)values(kode, nama_pelanggan,jk,tmpt_lahir,tgl_lahir,email,kartu_id,alamat);
     -> END$$
@@ -49,8 +49,6 @@ MariaDB [dbtoko]> CREATE PROCEDURE totalPesanan()
     -> BEGIN
     -> SELECT COUNT(*) as jumlah_pesanan FROM pesanan;
     -> END$$
-Query OK, 0 rows affected (0.025 sec)
-
 MariaDB [dbtoko]> DELIMITER ;
 MariaDB [dbtoko]> Call totalPesanan;
 ![image](https://user-images.githubusercontent.com/55681352/235926565-41067832-a567-4a7f-a519-9514865385ff.png)
@@ -65,16 +63,6 @@ Query OK, 0 rows affected (0.042 sec)
 
 MariaDB [dbtoko]> DELIMITER ;
 MariaDB [dbtoko]> CALL showPesanan;
-+----+------------+-------+--------------+
-| id | tanggal    | total | pelanggan_id |
-+----+------------+-------+--------------+
-|  1 | 2020-01-01 | 20000 |            1 |
-|  2 | 2020-02-01 |    10 |            1 |
-+----+------------+-------+--------------+
-2 rows in set (0.001 sec)
-
-Query OK, 0 rows affected (0.004 sec)
-
 MariaDB [dbtoko]>
 ![image](https://user-images.githubusercontent.com/55681352/235927468-e4d562fd-d4d9-4948-9c3b-bf53d05201c6.png)
 #buatkan query panjang di atas menjadi sebuah view baru: pesanan_produk_vw (menggunakan join dari table pesanan,pelanggan dan produk)
