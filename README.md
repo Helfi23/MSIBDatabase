@@ -1,14 +1,37 @@
-# MSIBDatabase
-## create table
-![image](https://user-images.githubusercontent.com/55681352/230291523-32d43446-a738-4a48-a7d9-c82ff9e4ab3a.png)
-![image](https://user-images.githubusercontent.com/55681352/230291549-581f3ecf-4271-478c-b871-a11268a053d0.png)
-![image](https://user-images.githubusercontent.com/55681352/230291580-c936c55f-9648-4762-b7d2-7a591343bf13.png)
-![image](https://user-images.githubusercontent.com/55681352/230291620-e10181ab-a67f-445e-b2e5-8f182b8a3fbb.png)
+### Tugas 8 Database
+## Query ketika memesan di table pembayaran akan update otomatis
+DELIMITER $$
+CREATE TRIGGER pesanan 
+AFTER INSERT ON pesanan
+  FOR EACH ROW
+  BEGIN
+	SET @kuitansi = CONCAT('INV-', NEW.id);
+	SET @orderan = (SELECT COUNT(*) FROM pesanan WHERE id = NEW.id);
+	SET @jumlah = (SELECT COUNT(*) FROM pesanan_items WHERE pesanan_id = NEW.id);
+	INSERT INTO pembayaran(nokuitansi, tanggal, jumlah, ke, pesanan_id, status_pembayaran)
+	VALUES (@kuitansi, NOW(), @jumlah, @orderan, NEW.id, 'Belum Lunas');
+  END
+  $$
+DELIMITER ;
+## Query jika sudah update jumlah di table pembayaran dan melebihi total harga maka akan update status pembayaran LUNAS
+DELIMITER $$
+ CREATE TRIGGER update_pembayaran_status
+ BEFORE UPDATE ON pembayaran
+ FOR EACH ROW
+    BEGIN
+    IF OLD.id = NEW.id THEN
+      SET @total = (SELECT total FROM pesanan WHERE id = OLD.pesanan_id);
+      SET @jumlah = NEW.jumlah;
+      IF @total <= @jumlah THEN 
+        SET NEW.status_pembayaran = 'LUNAS';
+      ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Warning: pembayaran kurang';
+      END IF;
+    END IF;
+  END
+  $$
+DELIMITER ;
 
+![image](https://user-images.githubusercontent.com/55681352/236521982-6a41f7ce-6914-4ef6-a9af-7c332abe7694.png)
+![image](https://user-images.githubusercontent.com/55681352/236522377-49b374b7-4713-4dd9-95d7-65e3a1f0b7aa.png)
 
-## add alamat 
-![image](https://user-images.githubusercontent.com/55681352/230291731-2ce710f5-1de9-48b9-bfb4-c897e5cfd176.png)
-## change kolom
-![image](https://user-images.githubusercontent.com/55681352/230291829-a32d4b5d-1002-4765-9629-30554581332b.png)
-## modif type data
-![image](https://user-images.githubusercontent.com/55681352/230291909-6a98749c-0056-4bf0-92ed-09cfa6f0bef2.png)
